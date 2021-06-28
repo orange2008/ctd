@@ -1,7 +1,11 @@
 import json 
 import requests 
+import download as dl
+print("Requesting for Github API")
 tgrepo = "https://api.github.com/repos/telegramdesktop/tdesktop/releases/latest" 
 rawdata = requests.get(tgrepo) 
+print("Status code: " + str(rawdata.status_code))
+print("Parsing API callback..")
 rawjson = rawdata.json() 
 for i in range(0,7): 
     label = rawjson["assets"][i]["label"] 
@@ -29,4 +33,15 @@ for i in range(0,7):
     else:
         print("Invalid API feedback.")
 
-
+version = rawjson["tag_name"]
+print("Parsed.")
+print("Downloading files...")
+dl.download(setup_win32[0], "Telegram", version, setup_win32[1])
+dl.download(setup_win64[0], "Telegram", version, setup_win64[1])
+dl.download(portable_win32[0], "Telegram", version, portable_win32[1])
+dl.download(portable_win64[0], "Telegram", version, portable_win64[1])
+dl.download(macos[0], "Telegram", version, macos[1])
+dl.download(linux[0], "Telegram", version, linux[1])
+dl.download(src[0], "Telegram", version, src[1])
+print("File downloaded.")
+print("Copyright 2021 Frank Ruan(CEO). ORWTMC Corporation reserved all the rights.")
