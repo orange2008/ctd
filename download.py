@@ -3,8 +3,8 @@ import os
 def download(url, cot, ver, filename):
     print(url + " => " + str(filename))
     try:
-        os.mkdir("/disk/CTD/" + cot.title() + "-" + ver)
+        os.mkdir("./" + cot.title() + "-" + ver)
     except FileExistsError:
         pass
-    urlretrieve(url, "/disk/CTD/" + cot.title() + "-" + ver + "/" + str(filename))
+    urlretrieve(url, "./" + cot.title() + "-" + ver + "/" + str(filename))
     return True
